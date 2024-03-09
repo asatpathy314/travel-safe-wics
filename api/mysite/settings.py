@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'reports',
     'rest_framework',
 ]
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173'] #This is a hack, change in production
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000'] #This is a hack, change in production
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

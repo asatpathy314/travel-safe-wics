@@ -10,16 +10,9 @@ class CountryView(APIView):
         country_name = request.query_params.get('name', None)
 
         # If country_name is provided, filter the queryset; otherwise, return all countries
-        queryset = Country.objects.filter(name__icontains=country_name) if country_name else Country.objects.all()
+        queryset = Country.objects.filter(name__icontains=country_name) if country_name else None
 
         # Serialize the queryset
         serializer = CountrySerializer(queryset, many=True)
 
         return Response(serializer.data)
-
-    def post(self, request):
-        serializer = CountrySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
